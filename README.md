@@ -1,4 +1,4 @@
-# Simple autofocus technique for syntehtic aperture sonar (SAS)
+# Simple autofocus technique for synthetic aperture sonar (SAS)
 This repository contains code to autofocus single-look complex (SLC) imagery from a SAS sonar.  The algorithm works by optimizing an attribute of the resulting output image over the phase correction space (1D azimuth FFT of SLC).  
 
 Three optimization functions are here:
