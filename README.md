@@ -8,8 +8,7 @@ Three optimization functions are here:
 3. Minimization of the -ln(x+b) of the output magnitude image.  See "Optimal Sharpness Function for SAR Autofocus"
 
 ## Data attribution
-
-Thanks go to J. Tory Cobb for curating this dataset. Please credit NSWC Panama City Division in any publication using this data.
+This work uses the Synthetic Aperture Sonar Seabed Environment Dataset (SASSED) dataset. Thanks go to J. Tory Cobb for curating this dataset. Please credit NSWC Panama City Division in any publication using this data.
 
 ## References
 
