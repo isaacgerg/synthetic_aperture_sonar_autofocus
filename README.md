@@ -1,12 +1,12 @@
 # Simple autofocus technique for synthetic aperture sonar (SAS)
 This repository contains code to autofocus single-look complex (SLC) imagery from a SAS sonar.  The algorithm works by optimizing an attribute of the resulting output image over the phase correction space (1D azimuth FFT of SLC).  
 
-Three optimization functions are here:
+Three objectives functions you can focus the imagery with are:
 1. Maximization of mean-normalized variance of the output magnitude image.  
 2. Minimization of the entropy of the output magnitude image.
 3. Minimization of the -ln(x+b) of the output magnitude image.  See "Optimal Sharpness Function for SAR Autofocus"
 
-The optimization is carried in one of two ways:1
+The optimization can be carried in one of two ways:
 1. Deriviatives are estimated from finite differences (BFGS, Simplex)
 2. Derivatives are automatically computed using autodiff via chain rule (Tensorflow SGD)
 
