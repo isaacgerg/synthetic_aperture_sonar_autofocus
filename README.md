@@ -7,6 +7,10 @@ Three optimization functions are here:
 2. Minimization of the entropy of the output magnitude image.
 3. Minimization of the -ln(x+b) of the output magnitude image.  See "Optimal Sharpness Function for SAR Autofocus"
 
+The optimization is carried in one of two ways:1
+1. Deriviatives are estimated from finite differences (BFGS, Simplex)
+2. Derivatives are automatically computed using autodiff via chain rule (Tensorflow SGD)
+
 ## Data attribution
 This work uses the Synthetic Aperture Sonar Seabed Environment Dataset (SASSED) dataset. Thanks go to J. Tory Cobb for curating this dataset. Please credit NSWC Panama City Division in any publication using this data.
 
