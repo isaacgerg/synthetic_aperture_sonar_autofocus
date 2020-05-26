@@ -1,5 +1,4 @@
-# synthetic_aperture_sonar_autofocus
-Simple autofocus technique for syntehtic aperture sonar (SAS)
+# Simple autofocus technique for syntehtic aperture sonar (SAS)
 
 This repository contains code to autofocus single-look complex (SLC) imagery from a SAS sonar.  The algorithm works by optimizing an attribute of the resulting output image over the phase correction space (1D azimuth FFT of SLC).  
 
@@ -8,11 +7,11 @@ Three optimization functions are here:
 2. Minimization of the entropy of the output magnitude image.
 3. Minimization of the -ln(x+b) of the output magnitude image.  See "Optimal Sharpness Function for SAR Autofocus"
 
-Data attribution
+## Data attribution
 
 Thanks go to J. Tory Cobb for curating this dataset. Please credit NSWC Panama City Division in any publication using this data.
 
-References
+## References
 
 T J Schulz. "Optimal Sharpness Function for SAR Autofocus." https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=4035715
 
