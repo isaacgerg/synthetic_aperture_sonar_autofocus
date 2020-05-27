@@ -10,6 +10,10 @@ The optimization can be carried in one of two ways:
 1. Deriviatives are estimated from finite differences (BFGS, Simplex)
 2. Derivatives are automatically computed using autodiff via chain rule (Tensorflow SGD)
 
+## Example Output
+
+![Before and After Autofocus](https://raw.githubusercontent.com/isaacgerg/synthetic_aperture_sonar_autofocus/master/output_autofocus_before_and_after_44.png)
+
 ## Data Attribution
 --- Approved for Public Release; distribution is unlimited. ---
 
