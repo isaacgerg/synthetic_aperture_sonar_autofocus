@@ -11,7 +11,7 @@ The optimization can be carried in one of two ways:
 2. Derivatives are automatically computed using autodiff via chain rule (Tensorflow SGD)
 
 ## Data Attribution
-Approved for Public Release; distribution is unlimited.
+--- Approved for Public Release; distribution is unlimited. ---
 
 Dataset title: Synthetic Aperture Sonar Seabed Environment Dataset (SASSED)
 
@@ -34,8 +34,9 @@ Thanks go to J. Tory Cobb for curating this dataset. Please credit NSWC Panama C
 Past Usage:
 Cobb, J. T., & Zare, A. (2014). Boundary detection and superpixel formation in synthetic aperture sonar imagery. Proceedings of the Institute of Acoustics, 36(Pt 1).
 
-Approved for Public Release; distribution is unlimited.
+--- Approved for Public Release; distribution is unlimited. --- 
 
+### Data Download
 Data available for download at: http://www.gergltd.com/data/sassed
 
 ## References
