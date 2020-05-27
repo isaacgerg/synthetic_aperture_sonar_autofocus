@@ -36,7 +36,7 @@ Cobb, J. T., & Zare, A. (2014). Boundary detection and superpixel formation in s
 
 --- Approved for Public Release; distribution is unlimited. --- 
 
-### Data Download
+## Data Download
 Data available for download at: http://www.gergltd.com/data/sassed
 
 ## References
