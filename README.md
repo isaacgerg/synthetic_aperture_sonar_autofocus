@@ -7,7 +7,7 @@ Three objectives functions you can focus the imagery with are:
 3. Minimization of the -ln(x+b) of the output magnitude image.  See "Optimal Sharpness Function for SAR Autofocus"
 
 The optimization can be carried in one of two ways:
-1. Deriviatives are estimated from finite differences (for methods: BFGS, Simplex)
+1. Deriviatives are estimated from finite differences (for methods: BFGS, Simplex). You can use Jax or Tensorflow with scipy.optimize also to use the analytic deriviatives.
 2. Derivatives are automatically computed using autodiff via chain rule (for method Tensorflow SGD)
 
 ## Example Output
