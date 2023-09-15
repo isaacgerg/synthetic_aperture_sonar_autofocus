@@ -24,6 +24,7 @@ The phase correction applied to autofocus the image.
 
 ## Example Output (Phase Gradient Autofocus)
 
+![image_26](https://github.com/isaacgerg/synthetic_aperture_sonar_autofocus/assets/11971499/c514640f-5a7e-4e3b-b479-28c05701131c)
 
 
 ## Data Attribution
