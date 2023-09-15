@@ -13,13 +13,18 @@ from PIL import Image
 #   estimation of phase errors in synthetic-aperture-radar imagery." 
 #   JOSA A 10.12 (1993): 2539-2546.
 #
+#  Flag for shadow PGA from:
+# Prater, et al. J Prater, D Bryner, and S Synnes. "SHADOW BASED PHASE GRADIENT 
+#    AUTOFOCUS FOR SYNTHETIC APERTURE SONAR." 5th annual Institute of Acoustics 
+#    SAS/SAR Conference. Lerici, Italy. 2023.
+#
 #   Assumes SLC azimuth is vertical dimension and range increases left to right 
 # along the horizontal dimension.
 #
 # "np" is the numpy package.
 # "sig" is the signal package from RITSAR.
 #--------------------------------------------------------------------------------------
-def pga(img, win = 'auto', win_params = [100, 0.5]):
+def pga(img, win = 'auto', win_params = [100, 0.5], shadow_pga = False):
 
     #Derive parameters
     npulses = int(img.shape[0])
@@ -35,7 +40,10 @@ def pga(img, win = 'auto', win_params = [100, 0.5]):
     for iii in range(max_iter):
 
         #Find brightest azimuth sample in each range bin
-        index = np.argsort(np.abs(img_af), axis=0)[-1]
+        if shadow_pga:
+            index = np.argsort(np.abs(img_af), axis=0)[0] 
+        else:
+            index = np.argsort(np.abs(img_af), axis=0)[-1]
 
         #Circularly shift image so max values line up
         f = np.zeros(img.shape)+0j
@@ -81,6 +89,8 @@ def pga(img, win = 'auto', win_params = [100, 0.5]):
         slope, intercept, r_value, p_value, std_err = scipy.stats.linregress(t,phi)
         line = slope*t + intercept
         phi = phi - line
+        if shadow_pga:
+            phi = -phi
         rms.append(np.sqrt(np.mean(phi**2)))
 
         if win == 'auto':
