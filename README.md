@@ -1,4 +1,4 @@
-# Simple Autofocus Technique for Synthetic Aperture Sonar (SAS)
+# Simple Autofocus Techniques for Synthetic Aperture Sonar (SAS)
 This repository contains two categories of methods to autofocus single-look complex (SLC) imagery from a SAS sonar.  The first algorithm works by optimizing a contrast metric of the resulting output image over the phase correction space (1D azimuth FFT of SLC).  The second algorithm is phase gradient autofocus (PGA) adapted from the RITSAR Python toolbox and modified to use the maximimum likelyhood (ML) kernel of:
 
  Jakowatz, Charles V., and Daniel E. Wahl. "Eigenvector method for maximum-likelihood 
