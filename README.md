@@ -6,6 +6,7 @@ This repository contains two categories of methods to autofocus single-look comp
    JOSA A 10.12 (1993): 2539-2546.
 
 The PGA autofocus has a flag to also compute the "shadow PGA" method of Prater, et al.
+
 J Prater, D Bryner, and S Synnes. "SHADOW BASED PHASE GRADIENT AUTOFOCUS FOR SYNTHETIC APERTURE SONAR." 5th annual Institute of Acoustics SAS/SAR Conference. Lerici, Italy. 2023.
 
 For the first class of algorithms, three objectives functions you can focus the imagery with are:
