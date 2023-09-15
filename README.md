@@ -1,7 +1,11 @@
 # Simple Autofocus Technique for Synthetic Aperture Sonar (SAS)
-This repository contains code to autofocus single-look complex (SLC) imagery from a SAS sonar.  The algorithm works by optimizing an attribute of the resulting output image over the phase correction space (1D azimuth FFT of SLC).  
+This repository contains two categories of methods to autofocus single-look complex (SLC) imagery from a SAS sonar.  The first algorithm works by optimizing a contrast metric of the resulting output image over the phase correction space (1D azimuth FFT of SLC).  The second algorithm is phase gradient autofocus (PGA) adapted from the RITSAR Python toolbox and modified to use the maximimum likelyhood (ML) kernel of:
 
-Three objectives functions you can focus the imagery with are:
+ Jakowatz, Charles V., and Daniel E. Wahl. "Eigenvector method for maximum-likelihood 
+   estimation of phase errors in synthetic-aperture-radar imagery." 
+   JOSA A 10.12 (1993): 2539-2546.
+
+For the first class of algorithms, three objectives functions you can focus the imagery with are:
 1. Maximization of mean-normalized variance of the output magnitude image.  
 2. Minimization of the entropy of the output magnitude image.
 3. Minimization of the -ln(x+b) of the output magnitude image.  See "Optimal Sharpness Function for SAR Autofocus"
@@ -10,13 +14,16 @@ The optimization can be carried in one of two ways:
 1. Deriviatives are estimated from finite differences (for methods: BFGS, Simplex). You can use Jax or Tensorflow with scipy.optimize also to use the analytic deriviatives.
 2. Derivatives are automatically computed using autodiff via chain rule (for method Tensorflow SGD)
 
-## Example Output
-Before and after applying autofocus.
+## Example Output (Meteric Based Methods)
+Before and after applying autofocus
 
 ![Before and After Autofocus](https://raw.githubusercontent.com/isaacgerg/synthetic_aperture_sonar_autofocus/master/output_autofocus_before_and_after_44.png)
 
 The phase correction applied to autofocus the image.
 ![Phase Correction](https://raw.githubusercontent.com/isaacgerg/synthetic_aperture_sonar_autofocus/master/output_phase_correction_44.png)
+
+## Example Output (Phase Gradient Autofocus)
+
 
 
 ## Data Attribution
