@@ -5,6 +5,9 @@ This repository contains two categories of methods to autofocus single-look comp
    estimation of phase errors in synthetic-aperture-radar imagery." 
    JOSA A 10.12 (1993): 2539-2546.
 
+The PGA autofocus has a flag to also compute the "shadow PGA" method of Prater, et al.
+J Prater, D Bryner, and S Synnes. "SHADOW BASED PHASE GRADIENT AUTOFOCUS FOR SYNTHETIC APERTURE SONAR." 5th annual Institute of Acoustics SAS/SAR Conference. Lerici, Italy. 2023.
+
 For the first class of algorithms, three objectives functions you can focus the imagery with are:
 1. Maximization of mean-normalized variance of the output magnitude image.  
 2. Minimization of the entropy of the output magnitude image.
@@ -23,8 +26,11 @@ The phase correction applied to autofocus the image.
 ![Phase Correction](https://raw.githubusercontent.com/isaacgerg/synthetic_aperture_sonar_autofocus/master/output_phase_correction_44.png)
 
 ## Example Output (Phase Gradient Autofocus)
+Canonical PGA
+![image_26_shadow_pga_False](https://github.com/isaacgerg/synthetic_aperture_sonar_autofocus/assets/11971499/ac7d0896-9d6d-4cb3-abda-46131c201ffd)
 
-![image_26](https://github.com/isaacgerg/synthetic_aperture_sonar_autofocus/assets/11971499/c514640f-5a7e-4e3b-b479-28c05701131c)
+Shadow PGA
+![image_26_shadow_pga_True](https://github.com/isaacgerg/synthetic_aperture_sonar_autofocus/assets/11971499/cb98090f-3b2a-4cef-93d5-d4713709e9fc)
 
 
 ## Data Attribution
