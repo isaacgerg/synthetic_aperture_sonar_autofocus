@@ -33,6 +33,8 @@ Canonical PGA
 Shadow PGA
 ![image_26_shadow_pga_True](https://github.com/isaacgerg/synthetic_aperture_sonar_autofocus/assets/11971499/cb98090f-3b2a-4cef-93d5-d4713709e9fc)
 
+Sept 21, 2023 - I believe shadow PGA "works" because you are modeling the signal as -1 * direct delta function + DC offset.  This is essentially the same model, mathematically speaking, as original PGA which models the signal as a dirac delta function.  In both cases, convolving the PSF with either of these function behaves as such to characterize the PSF with the shadow PGA inducing a -1 multiplier in the result which is exactly what we see with shadow PGA. The signal model with shadow PGA can also be seen when you examine the incoherent integration of the signal after center shifting the min of each range bin.  The resulting sum will look very similar, but with a -1 multiplier, to that when you incoherently sum the signal after center shifting the max of each range bin.
+
 
 ## Data Attribution
 --- Approved for Public Release; distribution is unlimited. ---
