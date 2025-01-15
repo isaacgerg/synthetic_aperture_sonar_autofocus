@@ -1,56 +1,76 @@
-# SAS Autofocus Tools
+# PGA vs Shadow PGA Comparison Tools
 
-This repository contains methods to autofocus single-look complex (SLC) imagery from Synthetic Aperture Sonar (SAS). It includes two main categories of autofocus algorithms and a visualization tool for comparing their results.
+This repository provides tools for comparing standard Phase Gradient Autofocus (PGA) with Shadow PGA for Synthetic Aperture Sonar (SAS) imagery. Shadow PGA, recently proposed by Prater et al. (2023), offers an alternative approach to traditional PGA by focusing on shadow regions rather than bright reflectors.
 
-Examples of PGA Performance
-Here are examples showing the performance of both Standard PGA and Shadow PGA on different types of scenes:
-Example 1: Rippled Seabed (Image 44)
-<img src="processed_images/image_44_combined_pga.png" alt="PGA Comparison on Rippled Seabed" width="800"/>
-Image 44 shows standard and shadow PGA performance on a rippled seabed scene. The top row shows standard PGA results while the bottom row demonstrates shadow PGA performance. Note the differences in shadow preservation between methods.
-Example 2: Mixed Terrain (Image 12)
-<img src="processed_images/image_12_combined_pga.png" alt="PGA Comparison on Mixed Terrain" width="800"/>
-Image 12 demonstrates performance on mixed terrain, highlighting how each method handles different scene characteristics. The comparison shows original image, PGA result, phase error, and RMS convergence for both methods.
+## Method Overview
 
-## Algorithms
-
-### 1. Contrast Optimization
-The first algorithm works by optimizing a contrast metric of the resulting output image over the phase correction space (1D azimuth FFT of SLC).
-
-### 2. Phase Gradient Autofocus (PGA)
-The second algorithm is Phase Gradient Autofocus (PGA), adapted from the RITSAR Python toolbox. This implementation has been modified to use the Maximum Likelihood (ML) kernel described in:
+The implementation builds upon the RITSAR Python toolbox's PGA algorithm, which uses the Maximum Likelihood (ML) kernel from Jakowatz & Wahl (1993):
 
 > Jakowatz, Charles V., and Daniel E. Wahl. "Eigenvector method for maximum-likelihood estimation of phase errors in synthetic-aperture-radar imagery." *JOSA A* 10.12 (1993): 2539-2546.
 
-Additionally, the PGA implementation includes support for "Shadow PGA" as described in:
+The Shadow PGA extension follows the method described in:
 
 > J. Prater, D. Bryner, and S. Synnes. "SHADOW BASED PHASE GRADIENT AUTOFOCUS FOR SYNTHETIC APERTURE SONAR." *5th annual Institute of Acoustics SAS/SAR Conference*. Lerici, Italy. 2023.
 
-## Visualization Tool (`pga_shadow_pga_demo.py`)
+## Example Results
 
-This script provides visualization tools for comparing standard PGA and Shadow PGA results.
+Here are comparative examples showing how both methods perform on different types of scenes:
 
-### Features
-- Processes SAS images using both standard PGA and Shadow PGA
-- Generates side-by-side comparisons of:
-  - Original image
-  - PGA-processed result
-  - Phase error plots
-  - RMS convergence plots
-- Creates detailed comparisons of the brightest regions (64x64 pixel patches)
-- Supports batch processing of multiple images
+### Example 1: Rippled Seabed (Image 44)
+<img src="processed_images/image_44_combined_pga.png" alt="PGA Comparison on Rippled Seabed" width="800"/>
+
+*Comparison showing how standard PGA (top) and shadow PGA (bottom) handle rippled seabed features. Note the enhanced preservation of shadow regions in the Shadow PGA result.*
+
+### Example 2: Mixed Terrain (Image 12)
+<img src="processed_images/image_12_combined_pga.png" alt="PGA Comparison on Mixed Terrain" width="800"/>
+
+*Performance comparison on mixed terrain, demonstrating the different focusing characteristics of each method. Each row shows: original image, autofocused result, phase error profile, and RMS convergence.*
+
+## Performance Comparison
+
+### Key Differences in Behavior
+
+**Standard PGA:**
+- Converges quickly (5-10 iterations) with smooth, monotonic RMS reduction
+- Produces consistent phase corrections across different scene types
+- Excels at focusing scenes with strong reflectors
+- Generally achieves lower final RMS values
+
+**Shadow PGA:**
+- Takes more iterations (20-30) with oscillatory convergence
+- Generates larger, more variable phase corrections
+- Better preserves shadow region details
+- Particularly effective on rippled seabed scenes
+
+### Practical Considerations
+
+Standard PGA is preferable for:
+- Scenes dominated by bright reflectors
+- Applications needing fast processing
+- Cases requiring consistent overall focus
+
+Shadow PGA shows advantages for:
+- Scenes with significant shadow content
+- Applications where shadow detail is crucial
+- Rippled seabed imagery
+
+## Usage
+
+The comparison tool (`pga_shadow_pga_demo.py`) processes SAS images using both methods and generates side-by-side comparisons showing:
+- Original and autofocused images
+- Phase error profiles
+- RMS convergence plots
 
 ### Requirements
 - Python 3.x
-- NumPy
-- SciPy
+- NumPy, SciPy
 - OpenCV (cv2)
 - Matplotlib
 - PIL (Pillow)
 - RITSAR
 - GDAL
 
-### Usage
-
+### Basic Usage
 ```python
 # Example usage
 import sas_tools
@@ -63,51 +83,13 @@ output_dir = "processed_images"
 python pga_shadow_pga_demo.py
 ```
 
-## Comparison of Standard and Shadow PGA Performance
+## Future Research Directions
 
-Standard PGA and Shadow PGA demonstrate distinct characteristics and performance differences across various aspects of autofocus processing. Here are the key observations from comparing their performance:
-
-### Convergence Behavior
-
-Standard PGA shows smoother and more consistent convergence in RMS plots, typically converging within 5-10 iterations. The RMS error generally decreases monotonically, and final RMS values tend to be lower than Shadow PGA.
-
-In contrast, Shadow PGA exhibits more oscillatory convergence behavior and often requires more iterations (20-30). The RMS plots show higher variability between iterations. While final RMS values are generally higher, this method may capture different features that standard PGA misses.
-
-### Phase Error Characteristics
-
-Standard PGA produces smoother phase error curves with generally smaller magnitudes and shows consistent behavior across different types of scenes. 
-
-Shadow PGA generates more variable phase error profiles and often shows larger magnitude phase corrections. The phase error profiles appear more sensitive to scene content, which can be both an advantage and disadvantage depending on the application.
-
-### Image Quality Impact
-
-Standard PGA works particularly well on scenes with strong reflectors and maintains overall image contrast, though it can sometimes blur shadow regions. 
-
-Shadow PGA better preserves shadow region details and is particularly effective on rippled seabed scenes. While it may introduce more noise in bright regions, it often provides better detail preservation in areas with significant shadow content.
-
-### Scene-Dependent Performance
-
-On ripple fields, both methods effectively focus ripple patterns, but Shadow PGA better preserves ripple contrast in shadow regions. Standard PGA provides more consistent focusing across the full scene.
-
-For mixed terrain, Shadow PGA shows advantages in areas with significant shadow content, while Standard PGA performs better on uniformly bright regions. Their complementary strengths suggest potential value in combining approaches.
-
-### Computational Considerations
-
-Shadow PGA typically requires more iterations and has a higher computational cost due to slower convergence. This suggests it may benefit from adaptive iteration limits in practical applications.
-
-### Recommendations for Use
-
-Standard PGA is preferred for scenes with strong reflectors, applications requiring faster processing, and cases where consistent focusing across the scene is a priority.
-
-Shadow PGA is better suited for scenes with significant shadow content, applications where shadow region detail is critical, and cases where maximum shadow contrast is desired.
-
-### Future Research Directions
-
-Potential areas for future research include hybrid approaches that combine standard and shadow PGA results, development of adaptive methods that switch between approaches based on local scene content, and exploration of weighted combinations of both methods.
-
-Additionally, there are opportunities to improve Shadow PGA convergence behavior, develop better termination criteria, and investigate scene-dependent parameter selection.
-
-This comparison suggests that while both methods have their strengths, the choice between them should be guided by the specific requirements of the application and the characteristics of the scene being processed.
+Potential areas for development include:
+- Hybrid approaches combining both methods
+- Adaptive selection between methods based on scene content
+- Optimization of Shadow PGA convergence
+- Scene-dependent parameter selection
 
 ## Acknowledgments
 - Original RITSAR Python toolbox contributors
