@@ -2,6 +2,15 @@
 
 This repository contains methods to autofocus single-look complex (SLC) imagery from Synthetic Aperture Sonar (SAS). It includes two main categories of autofocus algorithms and a visualization tool for comparing their results.
 
+Examples of PGA Performance
+Here are examples showing the performance of both Standard PGA and Shadow PGA on different types of scenes:
+Example 1: Rippled Seabed (Image 44)
+<img src="processed_images/image_44_combined_pga.png" alt="PGA Comparison on Rippled Seabed" width="800"/>
+Image 44 shows standard and shadow PGA performance on a rippled seabed scene. The top row shows standard PGA results while the bottom row demonstrates shadow PGA performance. Note the differences in shadow preservation between methods.
+Example 2: Mixed Terrain (Image 12)
+<img src="processed_images/image_12_combined_pga.png" alt="PGA Comparison on Mixed Terrain" width="800"/>
+Image 12 demonstrates performance on mixed terrain, highlighting how each method handles different scene characteristics. The comparison shows original image, PGA result, phase error, and RMS convergence for both methods.
+
 ## Algorithms
 
 ### 1. Contrast Optimization
