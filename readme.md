@@ -109,23 +109,5 @@ Additionally, there are opportunities to improve Shadow PGA convergence behavior
 
 This comparison suggests that while both methods have their strengths, the choice between them should be guided by the specific requirements of the application and the characteristics of the scene being processed.
 
-## Contributing
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## License
-[Include your license information here]
-
-## Citation
-If you use this code in your research, please cite:
-```bibtex
-@inproceedings{prater2023shadow,
-  title={Shadow Based Phase Gradient Autofocus for Synthetic Aperture Sonar},
-  author={Prater, J and Bryner, D and Synnes, S},
-  booktitle={5th annual Institute of Acoustics SAS/SAR Conference},
-  year={2023},
-  address={Lerici, Italy}
-}
-```
-
 ## Acknowledgments
 - Original RITSAR Python toolbox contributors
