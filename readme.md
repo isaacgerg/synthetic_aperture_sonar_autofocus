@@ -15,6 +15,53 @@ The Shadow PGA extension follows the method described in:
 ### Technical Insight
 Sept 21, 2023 - I believe shadow PGA "works" because you are modeling the signal as -1 * direct delta function + DC offset. This is essentially the same model, mathematically speaking, as original PGA which models the signal as a dirac delta function. In both cases, convolving the PSF with either of these function behaves as such to characterize the PSF with the shadow PGA inducing a -1 multiplier in the result which is exactly what we see with shadow PGA. The signal model with shadow PGA can also be seen when you examine the incoherent integration of the signal after center shifting the min of each range bin. The resulting sum will look very similar, but with a -1 multiplier, to that when you incoherently sum the signal after center shifting the max of each range bin.
 
+```
+Standard PGA Model:                          Shadow PGA Model:
+                                            
+     ^                                           ^
+     |                                           |
+  1.0 +    δ(x)                              DC +------------
+     |     ▲                                    |
+     |     █                                    |
+     |     █                                    |     ▼
+     |     █                                 0.0 +     █
+     |     █                                    |      █
+     +-----+-----+---> x                       |      █
+   0.0   0.0                                   +------+------ x
+                                                    -δ(x)
+
+Convolution with PSF:                        Convolution with PSF:
+     ^                                           ^
+     |     PSF(x)                               |
+     |      ╭─╮                                 |      
+  1.0 +      │                               DC +------------
+     |       │                                  |
+     |       │                                  |    inverted
+     |       │                                  |      PSF
+     |     ╭─┼─╮                            0.0 +      ╭─╮ 
+     |    ╱  │  ╲                              |     ╱  │  ╲
+     +---+---+---+--> x                        +----+---+---+-> x
+   0.0  -1   0   1                                 -1   0   1
+
+
+After Integration:                          After Integration:
+     ^                                           ^
+     |      sum                                  |      -sum
+  1.0 +      ▲                               DC +------------
+     |       █                                  |       
+     |       █                                  |      █
+     |     ╱ █ ╲                               |    ╱  █  ╲
+     |   ╱   █   ╲                          0.0 +  ╱    █    ╲
+     | ╱     █     ╲                           | ╱      █      ╲
+     +-------+-------+--> x                    +--------+---------> x
+   0.0      0.0                                        0.0
+```
+
+*Explanation:*
+- Standard PGA models signal as δ(x) (delta function)
+- Shadow PGA models as -δ(x) + DC offset
+- After PSF convolution, Shadow PGA result is inverted but preserves phase information
+- Integration shows similar profiles with -1 multiplier in Shadow PGA
 
 ## Example Results
 
