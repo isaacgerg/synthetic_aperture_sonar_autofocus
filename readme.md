@@ -69,13 +69,13 @@ After Integration:                          After Integration:
 
 Here are comparative examples showing how both methods perform on different types of scenes:
 
-### Example 1: Rippled Seabed (Image 44)
-<img src="processed_images/image_44_combined_pga.png" alt="PGA Comparison on Rippled Seabed" width="800"/>
+### Example 1: Rippled Seabed (Image 3)
+<img src="processed_images/image_3_combined_pga.png" alt="PGA Comparison on Rippled Seabed" width="800"/>
 
 *Comparison showing how standard PGA (top) and shadow PGA (bottom) handle rippled seabed features. Note the enhanced preservation of shadow regions in the Shadow PGA result.*
 
-### Example 2: Mixed Terrain (Image 3)
-<img src="processed_images/image_3_combined_pga.png" alt="PGA Comparison on Mixed Terrain" width="800"/>
+### Example 2: Mixed Terrain (Image 12)
+<img src="processed_images/image_12_combined_pga.png" alt="PGA Comparison on Mixed Terrain" width="800"/>
 
 *Performance comparison on mixed terrain, demonstrating the different focusing characteristics of each method. Each row shows: original image, autofocused result, phase error profile, and RMS convergence.*
 
