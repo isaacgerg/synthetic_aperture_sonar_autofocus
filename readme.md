@@ -31,7 +31,7 @@ Convolution with PSF:                        Convolution with PSF:
      ^                                           ^
      |     PSF(x)                               |
      |      ╭─╮                                 |      
-  1.0 +      │                               c  +------------  DC
+   c +       │                               c  +------------  DC
      |       │                                  |  \   │   /
      |       │                                  |    \ │ /
      |       │                                  |      | 
@@ -45,7 +45,7 @@ Convolution with PSF:                        Convolution with PSF:
 After Integration:                          After Integration:
      ^                                          ^
      |      sum                                 |      
-  1.0 +      ▲                              1.0 +------------  DC
+   c +       ▲                                 c +--------------  DC
      |       █                                  | \      █      /
      |       █                                  |   \    █    /
      |     ╱ █ ╲                                |     \  █  /
