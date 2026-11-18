@@ -74,7 +74,7 @@ def pga(img, win='auto', win_params=[100, 0.5], shadow_pga=False):
 
         # Window computation
         if win == 'auto':
-            s = np.sum(f * np.conj(f), axis=-1)
+            s = np.real(np.sum(f * np.conj(f), axis=-1))
             s = 10 * np.log10(s/s.max())
 
             # Window width selection based on iteration
@@ -106,8 +106,8 @@ def pga(img, win='auto', win_params=[100, 0.5], shadow_pga=False):
         phi = np.concatenate([[0], np.cumsum(phi_dot)])
         phi = np.unwrap(phi)
 
-        # Remove linear trend
-        t = np.arange(0, nsamples)
+        # Remove linear trend (phi has one value per azimuth bin)
+        t = np.arange(0, npulses)
         slope, intercept, _, _, _ = scipy.stats.linregress(t, phi)
         line = slope * t + intercept
         phi = phi - line

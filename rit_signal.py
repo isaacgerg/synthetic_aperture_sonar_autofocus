@@ -8,28 +8,30 @@
 
 import numpy as np
 from numpy import pi, arccosh, sqrt, cos
-from scipy.fftpack import fftshift, fft2, ifft2, fft, ifft
+from scipy.fftpack import fftshift, ifftshift, fft2, ifft2, fft, ifft
 from scipy.signal import firwin, filtfilt
 
 #all FT's assumed to be centered at the origin
+# The input is ifftshift-ed (not fftshift-ed) and only the transformed axis is shifted, so the centring is
+# exact for odd lengths too. For even lengths fftshift == ifftshift and the results are unchanged.
 def ft(f, ax=-1):
-    F = fftshift(fft(fftshift(f), axis = ax))
+    F = fftshift(fft(ifftshift(f, axes=ax), axis = ax), axes=ax)
 
     return F
 
 def ift(F, ax = -1):
-    f = fftshift(ifft(fftshift(F), axis = ax))
+    f = fftshift(ifft(ifftshift(F, axes=ax), axis = ax), axes=ax)
 
     return f
 
 def ft2(f, delta=1):
-    F = fftshift(fft2(fftshift(f)))*delta**2
+    F = fftshift(fft2(ifftshift(f)))*delta**2
 
     return(F)
 
 def ift2(F, delta=1):
     N = F.shape[0]
-    f = fftshift(ifft2(fftshift(F)))*(delta*N)**2
+    f = fftshift(ifft2(ifftshift(F)))*(delta*N)**2
 
     return(f)
 
